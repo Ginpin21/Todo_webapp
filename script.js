@@ -6,6 +6,7 @@ const completeList = document.getElementById("complete-list");
 
 form.addEventListener('submit',addTask);
 taskList.addEventListener('click',completeTask);
+completeList.addEventListener('click',completeTask);
 
 function addTask(e){
     e.preventDefault();
@@ -32,8 +33,11 @@ function completeTask(e){
         const task = e.target.parentElement
         const completeTask = task.childNodes[0].data;
         const li= document.createElement('li');
+        const delBtn = document.createElement("button");
+        delBtn.appendChild(document.createTextNode("X"));
+        delBtn.className="btn delete-btn";
         li.className="item";
-        li.appendChild(document.createTextNode(completeTask));
+        li.append(document.createTextNode(completeTask),delBtn);
         completeList.appendChild(li);
         task.remove();
     }
